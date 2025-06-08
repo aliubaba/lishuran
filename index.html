@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的"自画像" - 李舒然</title>
+    <title>我的"自画像" - 李舒然个性化升级版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             color: #333;
             line-height: 1.6;
         }
         .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
         }
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
         }
         .timeline-item:not(:last-child)::after {
             content: '';
@@ -27,194 +30,254 @@
             left: 24px;
             top: 36px;
             height: calc(100% - 36px);
-            width: 2px;
-            background-color: #e5e7eb;
+            width: 3px;
+            background: linear-gradient(to bottom, #3b82f6, #60a5fa, #93c5fd);
+            border-radius: 2px;
+        }
+        .profile-pic {
+            transition: all 0.5s ease;
+            filter: grayscale(20%);
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .profile-pic:hover {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .hobby-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .section-title {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.8rem;
+        }
+        .appearance-title::before {
+            content: "\f06e"; /* 眼睛图标 */
+        }
+        .personality-title::before {
+            content: "\f5da"; /* 大脑图标 */
+        }
+        .hobby-title::before {
+            content: "\f44e"; /* 棒球图标 */
+        }
+        .tag-cloud span {
+            transition: all 0.3s ease;
+        }
+        .tag-cloud span:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .characteristic-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .characteristic-card:hover {
+            border-left: 4px solid currentColor;
+            transform: translateX(5px);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4 py-8">
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <!-- 浮动装饰元素 -->
+    <div class="floating-element absolute top-20 right-10 w-16 h-16 rounded-full bg-blue-200 opacity-20 hidden md:block"></div>
+    <div class="floating-element absolute top-1/3 left-5 w-12 h-12 rounded-full bg-yellow-200 opacity-20 hidden md:block"></div>
+    <div class="floating-element absolute bottom-1/4 right-1/4 w-10 h-10 rounded-full bg-green-200 opacity-20 hidden md:block"></div>
+    
+    <div class="max-w-4xl mx-auto px-4 py-8 relative">
         <!-- 标题部分 -->
-        <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">我的"自画像"</h1>
-            <p class="text-lg text-gray-600">李舒然的个人介绍</p>
+        <div class="text-center mb-12 mt-6">
+            <div class="inline-block mb-6">
+                <div class="w-24 h-24 mx-auto mb-4 profile-pic rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                    <i class="fas fa-user text-white text-4xl"></i>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">我的"自画像"</h1>
+            <p class="text-xl text-gray-600">李舒然的个人介绍</p>
+            <div class="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mx-auto mt-4"></div>
         </div>
 
         <!-- 作者信息 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-8 card">
-            <div class="flex items-center">
-                <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                    <i class="fas fa-user text-blue-500 text-2xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold text-gray-800">李舒然</h2>
-                    <p class="text-gray-600">中队委 | 棒球爱好者 | 社交达人</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 写作框架 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-8 card">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                <i class="fas fa-project-diagram text-blue-500 mr-2"></i>
-                写作框架
-            </h2>
-            <div class="space-y-4">
-                <div class="flex items-start">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                        <i class="fas fa-play text-blue-500 text-xs"></i>
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 card relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-blue-100 opacity-30"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-blue-50 opacity-30"></div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between relative z-10">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-4 shadow-lg">
+                        <i class="fas fa-user text-white text-3xl"></i>
                     </div>
                     <div>
-                        <h3 class="font-medium text-gray-800">开头</h3>
-                        <p class="text-gray-600">点题引入</p>
-                    </div>
-                </div>
-                <div class="flex items-start">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                        <i class="fas fa-list text-blue-500 text-xs"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-medium text-gray-800">主体</h3>
-                        <div class="ml-4 mt-2 space-y-3">
-                            <div class="flex items-start">
-                                <div class="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center mr-2 mt-1 flex-shrink-0">
-                                    <i class="fas fa-circle text-blue-300 text-xs"></i>
-                                </div>
-                                <p class="text-gray-600">外貌：拒绝"千人一面"，突出个人独特特征</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center mr-2 mt-1 flex-shrink-0">
-                                    <i class="fas fa-circle text-blue-300 text-xs"></i>
-                                </div>
-                                <p class="text-gray-600">性格：拒绝"面面俱到"，聚焦鲜明个性</p>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center mr-2 mt-1 flex-shrink-0">
-                                    <i class="fas fa-circle text-blue-300 text-xs"></i>
-                                </div>
-                                <p class="text-gray-600">爱好/特长（或不足）：用具体事例支撑特点</p>
-                            </div>
+                        <h2 class="text-2xl font-bold text-gray-800">李舒然</h2>
+                        <p class="text-gray-600 mt-1">中队委 | 棒球爱好者 | 社交达人</p>
+                        <div class="flex mt-3 gap-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">乐观开朗</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-7 00 rounded-full text-xs font-medium">运动健将</span>
                         </div>
                     </div>
                 </div>
-                <div class="flex items-start">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                        <i class="fas fa-flag text-blue-500 text-xs"></i>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="text-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mx-auto">
+                            <i class="fas fa-users text-yellow-600 text-xl"></i>
+                        </div>
+                        <p class="text-xs mt-1 text-gray-600">社交达人</p>
                     </div>
-                    <div>
-                        <h3 class="font-medium text-gray-800">结尾</h3>
-                        <p class="text-gray-600">回扣主题</p>
+                    <div class="text-center">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto hobby-animation">
+                            <i class="fas fa-baseball-ball text-green-600 text-xl"></i>
+                        </div>
+                        <p class="text-xs mt-1 text-gray-600">棒球高手</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto">
+                            <i class="fas fa-star text-purple-600 text-xl"></i>
+                        </div>
+                        <p class="text-xs mt-1 text-gray-600">中队委</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 正文内容 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-8 card">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                <i class="fas fa-pen-fancy text-blue-500 mr-2"></i>
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 card">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-pen-fancy text-blue-500 mr-3 bg-blue-100 p-2 rounded-full"></i>
                 正文内容
             </h2>
             
             <div class="prose max-w-none">
-                <p class="text-gray-700 mb-6">老师您好！我叫李舒然，我是我们班的中队委。</p>
+                <div class="bg-blue-50 rounded-xl p-5 mb-8 border border-blue-100">
+                    <p class="text-lg text-blue-800 font-medium">
+                        <i class="fas fa-quote-left text-blue-400 mr-2"></i>
+                        我叫李舒然，是我们班的中队委。很高兴能通过这篇"自画像"让您更好地了解我！
+                    </p>
+                </div>
                 
                 <!-- 外貌部分 -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                            <i class="fas fa-eye text-blue-500 text-xs"></i>
-                        </span>
+                <div class="mb-10">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 section-title appearance-title">
                         外貌特征
                     </h3>
-                    <div class="bg-blue-50 rounded-lg p-4">
-                        <div class="flex flex-wrap -mx-2">
-                            <div class="w-full md:w-1/2 px-2 mb-3">
-                                <div class="bg-white rounded-lg p-3 shadow-xs">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-user text-blue-500"></i>
-                                        </div>
-                                        <span class="font-medium">体型</span>
-                                    </div>
-                                    <p class="mt-2 text-gray-700">又瘦又高，是个"瘦高个儿"</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="characteristic-card bg-gradient-to-br from-blue-50 to-white rounded-xl p-4 border border-blue-100">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center mr-3">
+                                    <i class="fas fa-ruler-vertical text-blue-700"></i>
                                 </div>
+                                <span class="font-bold text-gray-800">体型特征</span>
                             </div>
-                            <div class="w-full md:w-1/2 px-2 mb-3">
-                                <div class="bg-white rounded-lg p-3 shadow-xs">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-palette text-blue-500"></i>
-                                        </div>
-                                        <span class="font-medium">肤色</span>
-                                    </div>
-                                    <p class="mt-2 text-gray-700">皮肤比较黑，只有肩膀比较白</p>
+                            <p class="text-gray-700 pl-3">又瘦又高，站在同学中间总是格外显眼，是个典型的"瘦高个儿"。</p>
+                        </div>
+                        
+                        <div class="characteristic-card bg-gradient-to-br from-blue-50 to-white rounded-xl p-4 border border-blue-100">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center mr-3">
+                                    <i class="fas fa-palette text-blue-700"></i>
                                 </div>
+                                <span class="font-bold text-gray-800">肤色特点</span>
                             </div>
-                            <div class="w-full md:w-1/2 px-2 mb-3">
-                                <div class="bg-white rounded-lg p-3 shadow-xs">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-dot-circle text-blue-500"></i>
-                                        </div>
-                                        <span class="font-medium">面部特征</span>
-                                    </div>
-                                    <p class="mt-2 text-gray-700">脸上有三颗明显的痣</p>
+                            <p class="text-gray-700 pl-3">因为热爱户外运动，皮肤比较黑，只有肩膀部位因为棒球服遮挡比较白。</p>
+                        </div>
+                        
+                        <div class="characteristic-card bg-gradient-to-br from-blue-50 to-white rounded-xl p-4 border border-blue-100">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center mr-3">
+                                    <i class="fas fa-dot-circle text-blue-700"></i>
                                 </div>
+                                <span class="font-bold text-gray-800">面部特点</span>
                             </div>
-                            <div class="w-full md:w-1/2 px-2 mb-3">
-                                <div class="bg-white rounded-lg p-3 shadow-xs">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-cut text-blue-500"></i>
-                                        </div>
-                                        <span class="font-medium">头发特征</span>
-                                    </div>
-                                    <p class="mt-2 text-gray-700">头上有两个旋，打破常规"一旋横，二旋拧"的说法</p>
+                            <p class="text-gray-700 pl-3">脸上有三颗明显的痣"。</p>
+                        </div>
+                        
+                        <div class="characteristic-card bg-gradient-to-br from-blue-50 to-white rounded-xl p-4 border border-blue-100">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center mr-3">
+                                    <i class="fas fa-cut text-blue-700"></i>
                                 </div>
+                                <span class="font-bold text-gray-800">头发特征</span>
                             </div>
+                            <p class="text-gray-700 pl-3">头上有两个旋，打破了"一旋横，二旋拧"的传统说法，因为我性格开朗随和。</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 性格部分 -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                            <i class="fas fa-brain text-blue-500 text-xs"></i>
-                        </span>
+                <div class="mb-10">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 section-title personality-title">
                         性格特点
                     </h3>
-                    <div class="bg-yellow-50 rounded-lg p-4">
-                        <div class="flex flex-wrap -mx-2">
-                            <div class="w-full px-2 mb-4">
-                                <div class="bg-white rounded-lg p-4 shadow-xs">
-                                    <div class="flex items-center mb-3">
-                                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-comments text-yellow-500"></i>
-                                        </div>
-                                        <span class="font-medium">爱说话</span>
-                                    </div>
-                                    <p class="text-gray-700">每次一下课都会和同学们一起玩游戏、聊天</p>
+                    
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="bg-gradient-to-br from-yellow-50 to-white rounded-xl p-5 border border-yellow-100">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4">
+                                    <i class="fas fa-comments text-yellow-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">爱说话爱交流</h4>
+                                    <p class="text-yellow-700 text-sm">社交达人的基础特质</p>
                                 </div>
                             </div>
-                            <div class="w-full px-2">
-                                <div class="bg-white rounded-lg p-4 shadow-xs">
-                                    <div class="flex items-center mb-3">
-                                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
-                                            <i class="fas fa-user-friends text-yellow-500"></i>
-                                        </div>
-                                        <span class="font-medium">擅长交朋友</span>
-                                    </div>
-                                    <p class="text-gray-700 mb-3">在班里有很多朋友，同学们也愿意和我玩</p>
-                                    <div class="bg-yellow-100 rounded-lg p-3">
-                                        <div class="flex items-start">
-                                            <div class="w-6 h-6 rounded-full bg-yellow-200 flex items-center justify-center mr-2 mt-1 flex-shrink-0">
-                                                <i class="fas fa-quote-left text-yellow-600 text-xs"></i>
-                                            </div>
-                                            <p class="text-gray-700">记得有一次我在小区里看到有个小朋友在打羽毛球，我也想玩，就上去问"能不能和我一起玩"，他立刻答应了，没过一会儿，我们便成了好朋友。</p>
-                                        </div>
-                                    </div>
+                            <div class="pl-16">
+                                <p class="text-gray-700 mb-4">每次一下课，我就会和同学们聊天、分享趣事或者组织小游戏。课堂上我也喜欢积极发言，老师经常说我是班上的"气氛担当"。</p>
+                                <div class="bg-yellow-100 rounded-lg p-4 border-l-4 border-yellow-400">
+                                    <i class="fas fa-quote-left text-yellow-500 mr-2 float-left"></i>
+                                    <p class="text-gray-700 italic">"李舒然总能找到话题让大家笑起来，有他在的地方就不会冷场！" —— 我的同桌这样评价我</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-yellow-50 to-white rounded-xl p-5 border border-yellow-100">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4">
+                                    <i class="fas fa-user-friends text-yellow-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">擅长交朋友</h4>
+                                    <p class="text-yellow-700 text-sm">天生的社交能手</p>
+                                </div>
+                            </div>
+                            <div class="pl-16">
+                                <p class="text-gray-700">在班里我有许多好朋友，同学们也愿意和我一起玩耍。我认为交朋友的秘诀是真诚和主动。</p>
+                                <div class="mt-4 bg-gradient-to-r from-yellow-100 to-amber-100 rounded-lg p-4">
+                                    <h5 class="font-bold text-gray-800 flex items-center mb-2">
+                                        <i class="fas fa-certificate text-yellow-600 mr-2"></i>
+                                        友谊小故事
+                                    </h5>
+                                    <p class="text-gray-700">记得有一次在小区里，我看到有个小朋友独自打羽毛球。我主动上前问："你的技术真棒！能不能和我一起玩？"他开心地答应了。我们一起玩了半小时羽毛球，聊了很多共同话题，分手时已经互相知道了名字和班级。第二天在学校，我发现他竟然是隔壁班的同学！现在我们成了很好的朋友，经常一起打羽毛球。</p>
                                 </div>
                             </div>
                         </div>
@@ -222,61 +285,88 @@
                 </div>
                 
                 <!-- 爱好特长部分 -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                            <i class="fas fa-baseball-ball text-blue-500 text-xs"></i>
-                        </span>
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 section-title hobby-title">
                         爱好与特长
                     </h3>
-                    <div class="bg-green-50 rounded-lg p-4">
-                        <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                                <i class="fas fa-trophy text-green-500"></i>
+                    
+                    <div class="bg-gradient-to-br from-green-50 to-white rounded-xl p-5 mb-6 border border-green-100">
+                        <div class="flex flex-wrap items-center justify-between mb-5">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 rounded-full bg-green-200 flex items-center justify-center mr-4 hobby-animation">
+                                    <i class="fas fa-baseball-ball text-green-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">棒球运动</h4>
+                                    <p class="text-green-700 text-sm">我的运动激情所在</p>
+                                </div>
                             </div>
-                            <span class="font-medium">棒球运动</span>
+                            <div class="bg-green-100 px-3 py-1 rounded-full text-green-800 font-medium">
+                                <i class="fas fa-trophy mr-1"></i> 团队主力投手
+                            </div>
                         </div>
                         
-                        <div class="relative">
-                            <!-- 时间轴 -->
+                        <div class="relative ml-4 pl-8 border-l-2 border-green-300">
                             <div class="space-y-8">
-                                <div class="relative timeline-item pl-12">
-                                    <div class="absolute left-0 w-8 h-8 rounded-full bg-green-200 flex items-center justify-center">
-                                        <span class="text-green-700 font-medium">2</span>
+                                <div class="relative timeline-item">
+                                    <div class="absolute -left-11 w-9 h-9 rounded-full bg-green-300 flex items-center justify-center shadow">
+                                        <span class="text-green-800 font-bold">1</span>
                                     </div>
-                                    <div class="bg-white rounded-lg shadow-xs p-4">
-                                        <h4 class="font-medium text-gray-800">二年级</h4>
-                                        <p class="text-gray-700">在沙包掷远比赛中拿了第6名</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="relative timeline-item pl-12">
-                                    <div class="absolute left-0 w-8 h-8 rounded-full bg-green-300 flex items-center justify-center">
-                                        <span class="text-green-700 font-medium">3</span>
-                                    </div>
-                                    <div class="bg-white rounded-lg shadow-xs p-4">
-                                        <h4 class="font-medium text-gray-800">三年级</h4>
-                                        <p class="text-gray-700">入选棒球队，在运动会上得了第一名</p>
+                                    <div class="bg-white rounded-xl shadow-sm p-4 border border-green-100">
+                                        <h4 class="font-bold text-gray-800 mb-1">二年级：初显天赋</h4>
+                                        <p class="text-gray-700">在学校沙包掷远比赛中意外拿了第6名，体育老师发现了我的投掷天赋</p>
                                     </div>
                                 </div>
                                 
-                                <div class="relative timeline-item pl-12">
-                                    <div class="absolute left-0 w-8 h-8 rounded-full bg-green-400 flex items-center justify-center">
-                                        <span class="text-green-700 font-medium">4</span>
+                                <div class="relative timeline-item">
+                                    <div class="absolute -left-11 w-9 h-9 rounded-full bg-green-400 flex items-center justify-center shadow">
+                                        <span class="text-green-800 font-bold">2</span>
                                     </div>
-                                    <div class="bg-white rounded-lg shadow-xs p-4">
-                                        <h4 class="font-medium text-gray-800">四年级</h4>
-                                        <p class="text-gray-700">运动会上又拿了第一名</p>
+                                    <div class="bg-white rounded-xl shadow-sm p-4 border border-green-100">
+                                        <h4 class="font-bold text-gray-800 mb-1">三年级：崭露头角</h4>
+                                        <p class="text-gray-700">入选学校棒球队，在校运动会上和队友们配合默契，获得年级组第一名</p>
                                     </div>
                                 </div>
                                 
-                                <div class="relative pl-12">
-                                    <div class="absolute left-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-                                        <i class="fas fa-medal text-green-700"></i>
+                                <div class="relative timeline-item">
+                                    <div class="absolute -left-11 w-9 h-9 rounded-full bg-green-500 flex items-center justify-center shadow">
+                                        <span class="text-green-800 font-bold">3</span>
                                     </div>
-                                    <div class="bg-white rounded-lg shadow-xs p-4">
-                                        <h4 class="font-medium text-gray-800">球队排名</h4>
-                                        <p class="text-gray-700">在我们棒球队里，我的球速排第三名——第一名是六年级的，第二名是五年级的。</p>
+                                    <div class="bg-white rounded-xl shadow-sm p-4 border border-green-100">
+                                        <h4 class="font-bold text-gray-8 00 mb-1">四年级：再创佳绩</h4>
+                                        <p class="text-gray-700">运动会上再次获得第一名，个人投球速度排在全队第三</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative">
+                                    <div class="absolute -left-11 w-9 h-9 rounded-full bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center shadow">
+                                        <i class="fas fa-medal text-white"></i>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-green-50 to-white rounded-xl shadow-sm p-4 border border-green-200">
+                                        <h4 class="font-bold text-gray-800 mb-3">当前实力</h4>
+                                        <div class="flex flex-wrap gap-3">
+                                            <div class="bg-white px-3 py-2 rounded-lg border border-green-200">
+                                                <div class="text-green-700 font-bold flex items-center">
+                                                    <i class="fas fa-bullseye mr-2"></i>
+                                                    投球速度
+                                                </div>
+                                                <div class="text-2xl font-bold text-gray-800 mt-1">队内第<span class="text-green-600">3</span>名</div>
+                                            </div>
+                                            <div class="bg-white px-3 py-2 rounded-lg border border-green-200">
+                                                <div class="text-green-700 font-bold flex items-center">
+                                                    <i class="fas fa-shield-alt mr-2"></i>
+                                                    防守能力
+                                                </div>
+                                                <div class="text-2xl font-bold text-gray-800 mt-1">队内第<span class="text-green-600">5</span>名</div>
+                                            </div>
+                                            <div class="bg-white px-3 py-2 rounded-lg border border-green-200">
+                                                <div class="text-green-700 font-bold flex items-center">
+                                                    <i class="fas fa-running mr-2"></i>
+                                                    跑垒速度
+                                                </div>
+                                                <div class="text-2xl font-bold text-gray-800 mt-1">队内第<span class="text-green-600">4</span>名</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -285,64 +375,87 @@
                 </div>
                 
                 <!-- 结尾部分 -->
-                <div class="bg-purple-50 rounded-lg p-4 mt-6">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-question-circle text-purple-500"></i>
+                <div class="bg-gradient-to-br from-purple-50 to-white rounded-xl p-6 mb-4 border border-purple-100">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-purple-200 flex items-center justify-center mr-4 mt-1">
+                            <i class="fas fa-question-circle text-purple-700 text-xl"></i>
                         </div>
-                        <p class="text-gray-700 font-medium">经过我的自我介绍，您能不能在人群中一眼找到我呢？</p>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg mb-2">这就是我！</h3>
+                            <p class="text-gray-700">一个又高又瘦、脸上有三颗痣、头有两个旋的棒球小将；一个爱说爱笑、乐于交朋友的中队委。经过我的自我介绍，您能不能在人群中一眼找到我呢？</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- 特色标签 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-8 card">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                <i class="fas fa-tags text-blue-500 mr-2"></i>
-                个人标签
+        <div class="bg-gradient-to-br from-white to-indigo-50 rounded-2xl shadow-xl p-6 mb-8 card">
+            <h2 class="text-2xl font-bold text-gray-800 mb-5 flex items-center">
+                <i class="fas fa-tags text-indigo-500 mr-3 bg-indigo-100 p-2 rounded-full"></i>
+                我的个人标签
             </h2>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">瘦高个儿</span>
-                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">爱说话</span>
-                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">棒球高手</span>
-                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">社交达人</span>
-                <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">双旋特征</span>
-                <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">中队委</span>
+            <div class="flex flex-wrap gap-3 tag-cloud">
+                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium shadow-sm">瘦高个儿</span>
+                <span class="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium shadow-sm">爱说话</span>
+                <span class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium shadow-sm">棒球高手</span>
+                <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium shadow-sm">社交达人</span>
+                <span class="px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium shadow-sm">双旋男孩</span>
+                <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium shadow-sm">中队委员</span>
+                <span class="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium shadow-sm">阳光开朗</span>
+                <span class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium shadow-sm">团队协作者</span>
             </div>
         </div>
         
         <!-- 备注 -->
-        <div class="text-center text-sm text-gray-500 mt-12">
-            <p>网页由问小白生成，仅供参考</p>
-            <p>最后更新时间为2025-06-08 ，星期日</p>
+        <div class="text-center text-sm text-gray-500 mt-12 mb-8">
+            <p>网页经过优化升级，全方位展示李舒然的个人特质</p>
+            <p>最后更新于 <span class="font-medium">2025年6月8日 星期日</span></p>
             <p class="mt-2">
-                <a href="https://wenxiaobai.com" class="text-blue-500 hover:text-blue-700">问小白官网：wenxiaobai.com</a>
+                <a href="https://wenxiaobai.com" class="text-blue-500 hover:text-blue-700 font-medium inline-flex items-center">
+                    <i class="fas fa-globe mr-1"></i> 问小白官网：wenxiaobai.com
+                </a>
             </p>
         </div>
     </div>
 
     <script>
-        // 平滑滚动效果
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // 卡片悬停效果
+        // 卡片悬停效果增强
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                card.style.transform = 'translateY(-8px)';
+                card.style.boxShadow = '0 20px 25px rgba(0, 0, 0, 0.1)';
             });
             card.addEventListener('mouseleave', () => {
                 card.style.transform = '';
                 card.style.boxShadow = '';
+            });
+        });
+
+        // 标签鼠标悬停效果
+        const tags = document.querySelectorAll('.tag-cloud span');
+        tags.forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            });
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // 特性卡片悬停效果
+        const charCards = document.querySelectorAll('.characteristic-card');
+        charCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+                this.style.borderLeftColor = this.style.color;
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.borderLeftColor = '';
             });
         });
     </script>
